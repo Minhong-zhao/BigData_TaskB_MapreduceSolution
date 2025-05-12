@@ -3,6 +3,7 @@ import threading
 
 from mapper import map_passenger_flights
 from shuffle import shuffle
+from reducer import reduce_passenger_flights
 
 def threaded_map_reduce(filename, num_threads=2):
     """
@@ -37,7 +38,8 @@ def threaded_map_reduce(filename, num_threads=2):
         t.join()
 
     shuffled = shuffle(mapped_results)
-    return shuffled
+    reduced = reduce_passenger_flights(shuffled)
+    return reduced
 
 if __name__ == "__main__":
     filename = "AComp_Passenger_data_no_error.csv"
