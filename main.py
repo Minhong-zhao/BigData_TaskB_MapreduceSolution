@@ -43,4 +43,4 @@ def threaded_map_reduce(filename, num_threads=2):
 
 if __name__ == "__main__":
     filename = "AComp_Passenger_data_no_error.csv"
-    shuffle = threaded_map_reduce(filename, num_threads=4)
+    reduced = threaded_map_reduce(filename, num_threads=4)
