@@ -11,23 +11,27 @@ def threaded_map_reduce(filename, num_threads=2):
     """
     Perform the MapReduce process using multiple threads.
 
-    :param filename: Path to the CSV file containing flight records.
-    :param num_threads: Number of threads to use for parallel mapping.
-    :return: A tuple containing:
-             - List of passenger IDs with the highest number of flights.
-             - Maximum number of flights taken.
+    :param filename: Path to CSV file containing flight records
+    :param num_threads: Number of threads for parallel map processing
+    :return: Tuple (top_passengers, max_flights) where:
+             - top_passengers: List of passenger IDs with maximum flights
+             - max_flights: Integer count of maximum flights taken
     """
+    # Read input data from CSV file
     with open(filename, 'r', newline='') as file:
         reader = list(csv.reader(file))
 
+    # Split data into chunks for parallel processing
     chunk_size = len(reader) // num_threads
     threads = []
     mapped_results = []
 
     def worker(data_chunk, output_list):
+        """Thread worker function to perform map operation on a data chunk"""
         mapped = map_passenger_flights(data_chunk)
         output_list.extend(mapped)
 
+    # Start threads for parallel map processing
     for i in range(num_threads):
         start_index = i * chunk_size
         end_index = None if i == num_threads - 1 else (i + 1) * chunk_size
@@ -36,9 +40,11 @@ def threaded_map_reduce(filename, num_threads=2):
         threads.append(t)
         t.start()
 
+    # Wait for all threads to complete
     for t in threads:
         t.join()
 
+    # Perform shuffle and reduce operations
     shuffled = shuffle(mapped_results)
     reduced = reduce_passenger_flights(shuffled)
     return reduced
