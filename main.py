@@ -1,6 +1,8 @@
 import csv
+import threading
 
 from mapper import map_passenger_flights
+from shuffle import shuffle
 
 def threaded_map_reduce(filename, num_threads=2):
     """
@@ -23,8 +25,20 @@ def threaded_map_reduce(filename, num_threads=2):
         mapped = map_passenger_flights(data_chunk)
         output_list.extend(mapped)
 
-    return mapped
+    for i in range(num_threads):
+        start_index = i * chunk_size
+        end_index = None if i == num_threads - 1 else (i + 1) * chunk_size
+        chunk = reader[start_index:end_index]
+        t = threading.Thread(target=worker, args=(chunk, mapped_results))
+        threads.append(t)
+        t.start()
+
+    for t in threads:
+        t.join()
+
+    shuffled = shuffle(mapped_results)
+    return shuffled
 
 if __name__ == "__main__":
     filename = "AComp_Passenger_data_no_error.csv"
-    mapped = threaded_map_reduce(filename, num_threads=4)
+    shuffle = threaded_map_reduce(filename, num_threads=4)
