@@ -30,16 +30,7 @@ BigData_TaskB_MapreduceSolution/
 
 Make sure you're using Python 3.7+ and activate the virtual environment if using one.
 
-### 1. Install Dependencies
-
-No external libraries are required beyond Python Standard Library.
-
-```bash
-# (Optional) create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate  # on Windows: .venv\Scripts\activate
-
-🧠 Module Description
+## 🧠 Module Description
 | Module            | Description                                                 |
 | ----------------- | ----------------------------------------------------------- |
 | `main.py`         | Optional central runner or for testing purposes.            |
@@ -49,7 +40,7 @@ source .venv/bin/activate  # on Windows: .venv\Scripts\activate
 | `MultiThread.py`  | Orchestrates Map → Shuffle → Reduce using multiple threads. |
 | `SingleThread.py` | Sequential execution of Map → Shuffle → Reduce.             |
 
-🧪 Example Output
+## 🧪 Example Output
 --- Multithreaded processing results ---
 Passenger IDs (with the most flights): ['UES9151GS5']
 Number of flights: 25
