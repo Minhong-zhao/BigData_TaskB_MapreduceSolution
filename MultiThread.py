@@ -47,4 +47,9 @@ def threaded_map_reduce(filename, num_threads=2):
     # Perform shuffle and reduce operations
     shuffled = shuffle(mapped_results)
     reduced = reduce_passenger_flights(shuffled)
-    return reduced
+
+    # Find top passengers with maximum flights
+    max_flights = max(reduced.values())
+    top_passengers = [pid for pid, count in reduced.items() if count == max_flights]
+
+    return top_passengers, max_flights

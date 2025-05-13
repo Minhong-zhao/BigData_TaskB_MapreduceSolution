@@ -11,6 +11,7 @@ def single_threaded_map_reduce(filename):
     shuffled = shuffle(mapped)
     reduced = reduce_passenger_flights(shuffled)
 
+    # Find top passengers with maximum flights
     max_flights = max(reduced.values())
     top_passengers = [pid for pid, count in reduced.items() if count == max_flights]
 
