@@ -4,7 +4,7 @@ from SingleThread import single_threaded_map_reduce
 import time
 
 if __name__ == "__main__":
-    filename = "data/AComp_Passenger_data_no_error.csv"
+    filename = "data/AComp_Passenger_data_no_error_2.csv"
 
     # Count the time-consuming of multithreading
     start_multi = time.time()
