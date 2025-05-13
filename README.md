@@ -41,15 +41,5 @@ Make sure you're using Python 3.7+ and activate the virtual environment if using
 | `SingleThread.py` | Sequential execution of Map → Shuffle → Reduce.             |
 
 ## 🧪 Example Output
---- Multithreaded processing results ---
-Passenger IDs (with the most flights): ['UES9151GS5']
-Number of flights: 25
-Timing: 0.0020 seconds
+<img width="264" alt="image" src="https://github.com/user-attachments/assets/30b3f000-9be5-4462-ae92-ff544dbd072f" />
 
---- Singlethreaded processing results ---
-Passenger IDs (with the most flights): ['UES9151GS5']
-Number of flights: 25
-Timing: 0.0010 seconds
-
---- Acceleration ratio ---
-Acceleration ratio (Single-thread time / Multithread time) : 0.50x
