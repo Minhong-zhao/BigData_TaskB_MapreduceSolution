@@ -1,4 +1,4 @@
-from thread import threaded_map_reduce
+from MultiThread import threaded_map_reduce
 
 
 if __name__ == "__main__":
